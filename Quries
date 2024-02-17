@@ -1,0 +1,23 @@
+#1)Find the product with the highest average revenue per sale?
+select product_name , avg( revenue) as highest_average_revenue from products
+inner join sales
+on
+products.product_id=sales.sale_id
+group by product_name
+order by highest_average_revenue desc
+limit 1;
+
+#2)Find the product with the highest total revenue?
+select product_name , sum( revenue) as highest_total_revenue from products
+inner join sales
+on
+products.product_id=sales.sale_id
+group by product_name
+order by highest_total_revenue desc
+limit 1;
+
+#3)Determine the month with the highest total revenue across all sales?
+select month(sale_date) , sum(revenue) as total_revenue from sales
+group by month(sale_date)
+order by total_revenue desc
+limit 1;
